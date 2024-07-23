@@ -1,6 +1,7 @@
 require('dotenv').config() //ez kell a fasznak igazából
 
 const express = require('express')
+const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workouts')
 
 //express app
@@ -16,8 +17,17 @@ app.use((req, res, next) => {
 //routes
 app.use('/api/workouts', workoutRoutes)
 
-//listen for requiest
-app.listen(process.env.PORT, () => {
-    console.log('listen port 4000', process.env.PORT)
-})
+//connect to db
+mongoose.connect(process.env.MONGOOSE_URI)
+    .then(()=>{
+        //listen for requiest
+        app.listen(process.env.PORT, () => {
+            console.log('listen port', process.env.PORT)
+        })
+    })
+    .catch(() => {
+        console.log(error)
+    })
+
+
 
