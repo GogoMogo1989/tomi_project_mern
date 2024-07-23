@@ -26,15 +26,15 @@ const getWorkout = async(req, res) => {
 }
 
 //create workout
-const createWorkout = async(req, res) => {
+const createWorkout = async (req, res) => {
     const {title, load, reps} = req.body
     try{
         const workout = await Workout.create({title, load, reps})
         res.status(200).json(workout)
-    } catch( error){
+    } catch( error ){
         res.status(400).json({error: error.message})
     }
-    res.json({mssg: 'POST a new workout'})  
+    /* res.json({mssg: 'POST a new workout'})   */
 }
 
 //delete workout
