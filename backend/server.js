@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGOOSE_URI)
             console.log('listen port', process.env.PORT)
         })
     })
-    .catch(() => {
+    .catch((error) => {
         console.log(error)
     })
 
